@@ -1,0 +1,9 @@
+{
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "containerUser": "${localEnv:USER:root}",
+  "remoteUser": "${localEnv:USER:root}",
+  "initializeCommand": "${localWorkspaceFolder}/.devcontainer/initialize",
+  "runArgs": ["--env-file", "${localWorkspaceFolder}/.devcontainer/.generated-init.env"]
+}

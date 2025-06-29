@@ -1,0 +1,15 @@
+#!/bin/sh
+
+if [ "$(uname -s)" = 'Darwin' ]; then
+	cat <<- EOF > .devcontainer/.generated-init.env
+		CONTAINER_USERNAME=$(whoami)
+		CONTAINER_UID=$(id -u)
+		CONTAINER_GID=$(id -g)
+	EOF
+else
+	cat <<- EOF > .devcontainer/.generated-init.env
+		CONTAINER_USERNAME=$(whoami)
+		CONTAINER_UID=$(id --user)
+		CONTAINER_GID=$(id --group)
+	EOF
+fi
