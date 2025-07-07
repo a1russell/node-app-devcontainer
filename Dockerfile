@@ -30,6 +30,16 @@ if [ \
 	mkdir --parents "/home/${CONTAINER_USERNAME}/.ssh"
 	chown "${CONTAINER_UID}:${CONTAINER_GID}" "/home/${CONTAINER_USERNAME}/.ssh"
 	chmod 700 "/home/${CONTAINER_USERNAME}/.ssh"
+
+	# Set up Node.js for the container user.
+	su --shell /bin/zsh - "${CONTAINER_USERNAME}" <<-'EOI'
+		eval "$(fnm env --use-on-cd --shell zsh)"
+		fnm install --lts
+		npm install --global corepack@latest
+		corepack enable pnpm
+		corepack install --global pnpm@latest
+	EOI
+
 fi
 
 EOF
