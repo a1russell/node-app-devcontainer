@@ -23,7 +23,8 @@ if [ \
 
 	# Add the container user.
 	addgroup --gid ${CONTAINER_GID} ${CONTAINER_USERNAME}
-	adduser --disabled-password --uid ${CONTAINER_UID} --gid ${CONTAINER_GID} ${CONTAINER_USERNAME}
+	adduser --disabled-password --uid ${CONTAINER_UID} --gid ${CONTAINER_GID} --shell /bin/zsh ${CONTAINER_USERNAME}
+	touch "/home/${CONTAINER_USERNAME}/.zshrc"
 
 	# Set up the .ssh directory for the container user.
 	mkdir --parents "/home/${CONTAINER_USERNAME}/.ssh"
