@@ -14,7 +14,7 @@ set -o errexit
 if [ \
 	-n "${CONTAINER_USERNAME}" -a \
 	-n "${CONTAINER_UID}" -a \
-	-n "${CONTAINER_GID}" -a \
+	-n "${CONTAINER_GID}" \
 ]; then
 	# Remove the `ubuntu` user.
 	touch /var/mail/ubuntu
