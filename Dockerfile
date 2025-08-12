@@ -31,15 +31,15 @@ if [ \
 	chown "${CONTAINER_UID}:${CONTAINER_GID}" "/home/${CONTAINER_USERNAME}/.ssh"
 	chmod 700 "/home/${CONTAINER_USERNAME}/.ssh"
 
+	# Link mise system tools.
+	/usr/sbin/mise_link_system_tools "${CONTAINER_USERNAME}"
+
 	# Set up Node.js for the container user.
 	su --shell /bin/zsh - "${CONTAINER_USERNAME}" <<-'EOI'
-		eval "$(fnm env --use-on-cd --shell zsh)"
-		fnm install --lts
-		npm install --global corepack@latest
+		eval "$(mise activate bash --shims)"
 		corepack enable pnpm
 		corepack install --global pnpm@latest
 	EOI
-
 fi
 
 EOF
