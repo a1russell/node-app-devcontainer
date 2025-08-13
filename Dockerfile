@@ -2,8 +2,6 @@
 
 FROM a1russell/node-app-dev-ubuntu
 
-ENV EDITOR='code --wait'
-
 COPY .generated-init.env /etc/devcontainer-generated-init.env
 
 RUN <<EOF
